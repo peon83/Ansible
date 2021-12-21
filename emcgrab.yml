@@ -1,0 +1,38 @@
+---
+- name: Daily check on servers.
+  hosts: "{{ HOST }}"
+  #remote_user: root
+  become: yes
+  become_method: su 
+  tasks:
+
+  - name: Borrando Emcgrab Antiguos.
+    file:
+      path: /var/emc/emcgrab/outputs/
+      state: absent
+    ignore_errors: yes
+    
+  - name: Generando EmcGrab
+    shell: /bin/bash emcgrab.sh -legal -autoexec
+    args:
+      chdir: /var/emc/emcgrab/
+  #  register: out
+  #- debug: var=out.stdout_lines
+ 
+  - name: Nombre Emcgrab
+    shell: ls -1 *.gz
+    args:
+      chdir: /var/emc/emcgrab/outputs/
+    register: outputfiles
+  #- debug: var=outputfiles.stdout
+ 
+  - name: Moviendo archivo
+    fetch: 
+      src: /var/emc/emcgrab/outputs/{{  outputfiles.stdout }}
+      dest: /LUIS/EmcGrab/
+      flat: yes
+  #    register: out
+  #- debug: var=out.stdout_lines
+
+ # - name: Delete files
+ #   shell: rm -rf /tmp/sysgrab*
