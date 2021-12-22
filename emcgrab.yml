@@ -1,5 +1,5 @@
 ---
-  - tasks:
+- tasks:
   - name: Nombre Emcgrab
     shell: ls
     args:
