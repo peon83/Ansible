@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: IP
   become: yes
   become_method: su
   tasks:
