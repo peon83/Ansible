@@ -1,7 +1,7 @@
 ---
 - hosts: all
-  become: yes
-  become_method: su
+  #become: yes
+  #become_method: su
   tasks:
   - name: Nombre Emcgrab
     shell: ls
