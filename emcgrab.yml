@@ -1,10 +1,5 @@
 ---
-- name: Daily check on servers.
-  hosts: hosts
-  become: yes
-  become_method: su 
   tasks:
-
   - name: Nombre Emcgrab
     shell: ls
     args:
