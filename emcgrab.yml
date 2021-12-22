@@ -1,6 +1,6 @@
 ---
 - name: Daily check on servers.
-  hosts: 
+  hosts: {{ hosts }}
   #remote_user: root
   become: yes
   become_method: su 
