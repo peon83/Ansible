@@ -1,6 +1,6 @@
 ---
 - name: Daily check on servers.
-  hosts: {{ hosts }}
+  hosts: hosts
   become: yes
   become_method: su 
   tasks:
